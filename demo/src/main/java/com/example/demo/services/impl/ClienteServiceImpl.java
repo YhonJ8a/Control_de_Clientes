@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.repository.ClienteRepocitory;
 import com.example.demo.repository.entities.Cliente;
+import com.example.demo.repository.entities.Region;
 import com.example.demo.services.ClienteService;
 
 
@@ -30,15 +31,20 @@ public class ClienteServiceImpl implements ClienteService{
     }
 
     @Override
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = false) 
     public Cliente save(Cliente cliente) {
         return clienteRepocitory.save(cliente);
     }
 
     @Override
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = false) 
     public void delete(Cliente cliente) {
         clienteRepocitory.delete(cliente);
     }
     
+    @Override
+    @Transactional(readOnly = true)
+    public List<Region> findAllRegiones(){
+        return clienteRepocitory.findAllRegiones();
+    }
 }
